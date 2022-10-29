@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/img/Untitled-Artwork.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+
