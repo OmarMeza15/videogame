@@ -35,13 +35,8 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 203px;
 }
 
-a {
-  height: 35px;
+canvas {
+    background-color: #ffffff95;
 }
-
-
-
-
