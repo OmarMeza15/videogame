@@ -66,7 +66,7 @@ startGame();
 
 function spritesAnimation() {
     character.image = catSprites[counter];
-    if (counter < 18) {
+    if (counter < 17) {
         counter++;
       } else {
         counter = 0;
