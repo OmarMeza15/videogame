@@ -5,6 +5,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 // Load images
+    // Main Character 
 const g0 = new Image();
 const g1 = new Image();
 const g2 = new Image();
@@ -18,8 +19,44 @@ g3.src = "/img/Characters/Cat/4.png";
 g4.src = "/img/Characters/Cat/5.png";
 g5.src = "/img/Characters/Cat/6.png";
 
+    // Background
+const img = new Image();
+img.src = "/img/Backgrounds/loopbackground3.jpg";
+
 // Sprites
 const catSprites = [g0, g1, g2, g3, g4, g5];
+
+// Background loop
+const backgroundImage = {
+    img: img,
+    x: 0,
+    speed: -1,
+  
+    move: function() {
+      this.x += this.speed;
+      this.x %= img.width;
+    },
+  
+    draw: function() {
+      ctx.drawImage(this.img, this.x, 0);
+      if (this.speed < 0) {
+        ctx.drawImage(this.img, this.x + img.width, 0);
+      } else {
+        ctx.drawImage(this.img, this.x - this.img.width, 0);
+      }
+    },
+  };
+  
+  function updateCanvas() {
+    backgroundImage.move();
+  
+    ctx.clearRect(0, 0, 768, 468);
+    backgroundImage.draw();
+  
+    requestAnimationFrame(updateCanvas);
+  }
+
+img.onload = updateCanvas();
 
 // Define characters
 class cat {
@@ -85,6 +122,8 @@ function startGame() {
     setInterval(() => {
         spritesAnimation();
     }, 100);
+
+    
 }
 
 startGame();
