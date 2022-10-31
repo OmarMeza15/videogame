@@ -19,7 +19,7 @@ g4.src = "/img/Characters/Cat/5.png";
 g5.src = "/img/Characters/Cat/6.png";
 
 // Sprites
-const catSprites = [g0, g0, g0, g1, g1, g1, g2, g2, g2, g3, g3, g3, g4, g4, g4, g5, g5, g5];
+const catSprites = [g0, g1, g2, g3, g4, g5];
 
 // Define characters
 class cat {
@@ -37,6 +37,31 @@ class cat {
     drawing() {
         this.ctx.drawImage(this.image, this.positionX, this.positionY);
       }
+
+    // Movements
+    front() {
+        if (this.positionX + 100 < 760) {
+            this.positionX = this.positionX + 10;
+        }
+    }
+
+    back() {
+        if(this.positionX > 0) {
+            this.positionX = this.positionX - 10;
+        }
+    }
+
+    up() {
+        if(this.positionY > 0) {
+            this.positionY = this.positionY - 10;
+        }
+    }
+
+    down() {
+        if(this.positionY + 106 < 460) {
+            this.positionY = this.positionY + 10;
+        }
+    }
 }
 
 // Character
@@ -59,14 +84,31 @@ function startGame() {
 
     setInterval(() => {
         spritesAnimation();
-    }, 40);
+    }, 100);
 }
 
 startGame();
 
+window.addEventListener("keydown", (event) => {
+    switch  (event.code) {
+        case "ArrowRight":
+            character.front();
+            break;
+        case "ArrowLeft":
+            character.back();
+            break;
+        case "ArrowUp":
+            character.up();
+            break;
+        case "ArrowDown":
+            character.down();
+            break;
+    }
+})
+
 function spritesAnimation() {
     character.image = catSprites[counter];
-    if (counter < 17) {
+    if (counter < 5) {
         counter++;
       } else {
         counter = 0;
