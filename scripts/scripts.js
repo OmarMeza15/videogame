@@ -39,6 +39,10 @@ e5.src = "/img/Characters/Bat2/2.png";
 e6.src = "/img/Characters/Bat2/3.png";
 e7.src = "/img/Characters/Bat2/4.png";
 
+    // Shooting star
+const s0 = new Image();
+s0.src = "/img/icons/shooting.png"
+
     // Background
 const img = new Image();
 img.src = "/img/Backgrounds/loopbackground3.jpg";
@@ -53,32 +57,36 @@ const bat2Sprites = [e4, e5, e6, e7, e6, e5];
 //     img: img,
 //     x: 0,
 //     speed: -1,
-  
+      
 //     move: function() {
-//       this.x += this.speed;
-//       this.x %= img.width;
+//         this.x += this.speed;
+//         this.x %= img.width;
 //     },
-  
+      
 //     draw: function() {
-//       ctx.drawImage(this.img, this.x, 0);
-//       if (this.speed < 0) {
-//         ctx.drawImage(this.img, this.x + img.width, 0);
-//       } else {
-//         ctx.drawImage(this.img, this.x - this.img.width, 0);
-//       }
+//         ctx.drawImage(this.img, this.x, 0);
+//         if (this.speed < 0) {
+//             ctx.drawImage(this.img, this.x + img.width, 0);
+//         } else {
+//             ctx.drawImage(this.img, this.x - this.img.width, 0);
+//         }
 //     },
-//   };
-  
-//   function updateCanvas() {
+// };
+      
+// function updateCanvas() {
 //     backgroundImage.move();
-  
-//     ctx.clearRect(0, 0, 768, 468);
+      
+//     // ctx.clearRect(0, 0, 768, 468);
 //     backgroundImage.draw();
-  
+      
 //     requestAnimationFrame(updateCanvas);
-//   }
+// }
+// updateCanvas();
 
-// img.onload = updateCanvas();
+// Enemy, stars and explosions lists
+let enemies1 = [];
+let enemies2 = [];
+let stars = [];
 
 // Define characters
 class cat {
@@ -121,6 +129,14 @@ class cat {
             this.positionY = this.positionY + 10;
         }
     }
+
+    shoot() {
+        if(stars.length < 3) {
+            const star = new shootStars(ctx, character.positionX + 80, character.positionY + 25, s0);
+
+            stars.push(star);
+        }
+    }
 }
 
 class bat1 {
@@ -157,7 +173,24 @@ class bat2 {
     }
 }
 
-// Character
+class shootStars {
+    constructor(ctx, positionX, positionY, image) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.ctx = ctx;
+        this.image = image;
+    }
+
+    front() {
+        this.positionX = this.positionX + 5;
+    }
+
+    drawing() {
+        this.ctx.drawImage(this.image, this.positionX, this.positionY)
+    }
+}
+
+// Main character
 const character  = new cat(ctx, 40, 200, g0);
 
 // Counter
@@ -172,6 +205,7 @@ function startGame() {
     character.life = 3;
     enemies1 = [];
     enemies2 = [];
+    stars = [];
     character.positionX = 40;
     character.positionY = 200;
 
@@ -189,6 +223,15 @@ function startGame() {
             enemy2.back();
             enemy2.drawing();
             enemy2.image = bat2Sprites[counter];
+        });
+
+        stars.forEach((star, starIndex) => {
+            star.drawing();
+            star.front();
+
+            if(star.positionX + 30 > 768) {
+                stars.splice(starIndex, 1);
+            }
         });
     }, 1000 / 60);
     
@@ -231,6 +274,9 @@ window.addEventListener("keydown", (event) => {
             break;
         case "ArrowDown":
             character.down();
+            break;
+        case "Space":
+            character.shoot();
             break;
     }
 })
