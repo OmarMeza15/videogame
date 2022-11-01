@@ -229,9 +229,31 @@ function startGame() {
             star.drawing();
             star.front();
 
+            // Disappear at the end of the canvas
             if(star.positionX + 30 > 768) {
                 starsArray.splice(starIndex, 1);
             }
+
+            // Disappear if it collides with a bat
+            enemies1.forEach((enemy1, enemyIndex) => {
+                if(star.positionX + 10 >= enemy1.positionX && 
+                star.positionY <= enemy1.positionY + 84 && 
+                star.positionY + 27 >= enemy1.positionY) {
+                    starsArray.splice(starIndex, 1);
+
+                    enemies1.splice(enemyIndex, 1);
+                }
+            });
+
+            enemies2.forEach((enemy2, enemyIndex) => {
+                if(star.positionX + 10 >= enemy2.positionX && 
+                star.positionY <= enemy2.positionY + 69 && 
+                star.positionY + 27 >= enemy2.positionY) {
+                    starsArray.splice(starIndex, 1);
+
+                    enemies2.splice(enemyIndex, 1);
+                }
+            });
         });
     }, 1000 / 60);
     
