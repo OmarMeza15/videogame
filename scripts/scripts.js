@@ -239,12 +239,34 @@ function startGame() {
             enemy1.back();
             enemy1.drawing();
             enemy1.image = bat1Sprites[counter];
+
+            if(enemy1.positionX <= character.positionX + 90 &&
+                enemy1.positionY +80 >= character.positionY &&
+                enemy1.positionY <= character.positionY + 100 &&
+                enemy1.positionX + 100 >= character.positionX) {
+                    enemies1.splice(enemyPosition, 1);
+            }
+
+            if(enemy1.positionX < -100) {
+                enemies1.splice(enemyPosition, 1);
+            }
         });
 
         enemies2.forEach((enemy2, enemyPosition) => {
             enemy2.back();
             enemy2.drawing();
             enemy2.image = bat2Sprites[counter];
+
+            if(enemy2.positionX <= character.positionX + 90 &&
+                enemy2.positionY + 64 >= character.positionY &&
+                enemy2.positionY <= character.positionY + 100 &&
+                enemy2.positionX + 103 >= character.positionX) {
+                    enemies2.splice(enemyPosition, 1);
+            }
+
+            if(enemy2.positionX < -103) {
+                enemies2.splice(enemyPosition, 1);
+            }
         });
 
         starsArray.forEach((star, starIndex) => {
