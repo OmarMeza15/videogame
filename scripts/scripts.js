@@ -43,6 +43,10 @@ e7.src = "/img/Characters/Bat2/4.png";
 const s0 = new Image();
 s0.src = "/img/icons/shooting.png"
 
+    // explosion
+const explosionImg = new Image();
+explosionImg.src = "/img/icons/explosion.png";
+
     // Background
 const img = new Image();
 img.src = "/img/Backgrounds/loopbackground3.jpg";
@@ -87,6 +91,7 @@ const bat2Sprites = [e4, e5, e6, e7, e6, e5];
 let enemies1 = [];
 let enemies2 = [];
 let starsArray = [];
+let explosionArray = [];
 
 // Define characters
 class cat {
@@ -182,11 +187,28 @@ class shootStars {
     }
 
     front() {
-        this.positionX = this.positionX + 5;
+        this.positionX = this.positionX + 7;
     }
 
     drawing() {
         this.ctx.drawImage(this.image, this.positionX, this.positionY)
+    }
+}
+
+class explosion {
+    constructor(ctx, positionX, positionY, image) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.ctx = ctx;
+        this.image = image;
+        this.sizeX = 50;
+        this.sizeY = 42; 
+    }
+
+    drawing() {
+        this.ctx.drawImage(this.image, this.positionX, this.positionY, );
+        this.sizeX += 5;
+        this.sizeY += 2;
     }
 }
 
@@ -238,22 +260,46 @@ function startGame() {
             enemies1.forEach((enemy1, enemyIndex) => {
                 if(star.positionX + 10 >= enemy1.positionX && 
                 star.positionY <= enemy1.positionY + 84 && 
-                star.positionY + 27 >= enemy1.positionY) {
+                star.positionY + 27 >= enemy1.positionY &&
+                star.positionX <= enemy1.positionX + 100) {
                     starsArray.splice(starIndex, 1);
 
                     enemies1.splice(enemyIndex, 1);
+
+                    const explode = new explosion(ctx, 
+                        star.positionX + 30, 
+                        star.positionY, 
+                        explosionImg);
+
+                    explosionArray.push(explode);
                 }
             });
 
             enemies2.forEach((enemy2, enemyIndex) => {
                 if(star.positionX + 10 >= enemy2.positionX && 
                 star.positionY <= enemy2.positionY + 69 && 
-                star.positionY + 27 >= enemy2.positionY) {
+                star.positionY + 27 >= enemy2.positionY &&
+                star.positionX <= enemy2.positionX + 103) {
                     starsArray.splice(starIndex, 1);
 
                     enemies2.splice(enemyIndex, 1);
+
+                    const explode = new explosion(ctx, 
+                        star.positionX + 30, 
+                        star.positionY, 
+                        explosionImg);
+
+                    explosionArray.push(explode);
                 }
             });
+        });
+
+        explosionArray.forEach((blast, explosions) => {
+            blast.drawing();
+
+            if(blast.sizeX >= 100 && blast.sizeY >= 84) {
+                explosionArray.splice(explosions, 1);
+            }
         });
     }, 1000 / 60);
     
