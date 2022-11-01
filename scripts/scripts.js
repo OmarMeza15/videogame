@@ -47,6 +47,10 @@ s0.src = "/img/icons/shooting.png"
 const explosionImg = new Image();
 explosionImg.src = "/img/icons/explosion.png";
 
+    // Potion
+const item = new Image();
+item.src = "/img/icons/collectible.png";
+
     // Background
 const img = new Image();
 img.src = "/img/Backgrounds/loopbackground3.jpg";
@@ -87,11 +91,12 @@ const bat2Sprites = [e4, e5, e6, e7, e6, e5];
 // }
 // updateCanvas();
 
-// Enemy, stars and explosions lists
+// Enemy, stars, explosions and items lists
 let enemies1 = [];
 let enemies2 = [];
 let starsArray = [];
 let explosionArray = [];
+let potions = [];
 
 // Define characters
 class cat {
@@ -212,6 +217,23 @@ class explosion {
     }
 }
 
+class potion {
+    constructor(ctx, positionX, positionY, image) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.ctx = ctx;
+        this.image = image;
+    }
+
+    back() {
+        this.positionX = this.positionX - 5;
+    }
+
+    drawing() {
+        this.ctx.drawImage(this.image, this.positionX, this.positionY);
+    }
+}
+
 // Main character
 const character  = new cat(ctx, 40, 200, g0);
 
@@ -222,15 +244,18 @@ let counter = 0;
 let intervalCharacter;
 let intervalBat1;
 let intervalBat2;
+let intervalItems;
 
 function startGame() {
     character.life = 3;
     enemies1 = [];
     enemies2 = [];
+    itemsArray = [];
     starsArray = [];
     character.positionX = 40;
     character.positionY = 200;
 
+    // Draw character, enemies and items and their interactions
     intervalCharacter = setInterval(() => {
         ctx.clearRect(0, 0, 768, 468);
         character.drawing();
@@ -266,6 +291,23 @@ function startGame() {
 
             if(enemy2.positionX < -103) {
                 enemies2.splice(enemyPosition, 1);
+            }
+        });
+
+        itemsArray.forEach((collectible, itemPosition) => {
+            collectible.back();
+            collectible.drawing();
+            collectible.image = item;
+
+            if(collectible.positionX <= character.positionX + 90 &&
+                collectible.positionY + 43 >= character.positionY &&
+                collectible.positionY <= character.positionY + 100 &&
+                collectible.positionX + 36 >= character.positionX) {
+                    itemsArray.splice(itemPosition, 1);
+                }
+
+            if(collectible.positionX < -36) {
+                itemsArray.splice(itemPosition, 1);
             }
         });
 
@@ -325,7 +367,7 @@ function startGame() {
         });
     }, 1000 / 60);
     
-    // Create enemies
+    // Enemies respawn
     intervalBat1 = setInterval(() => {
         if(Math.floor(Math.random() * 2) == 1) {
             const height1 = Math.floor(Math.random() * 200);
@@ -343,6 +385,16 @@ function startGame() {
             enemies2.push(enemy2);
         }
     }, 2000);
+
+    // Items respawn
+    intervalItems = setInterval(() => {
+        if(Math.floor(Math.random() * 2) == 1) {
+            const height3 = Math.floor(Math.random() * 400);
+
+            const collectible = new potion(ctx, 768, height3, item);
+            itemsArray.push(collectible);
+        }
+    }, 1500);
 
     setInterval(() => {
         spritesAnimation();
