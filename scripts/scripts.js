@@ -86,7 +86,7 @@ const bat2Sprites = [e4, e5, e6, e7, e6, e5];
 // Enemy, stars and explosions lists
 let enemies1 = [];
 let enemies2 = [];
-let stars = [];
+let starsArray = [];
 
 // Define characters
 class cat {
@@ -131,10 +131,10 @@ class cat {
     }
 
     shoot() {
-        if(stars.length < 3) {
+        if(starsArray.length < 3) {
             const star = new shootStars(ctx, character.positionX + 80, character.positionY + 25, s0);
 
-            stars.push(star);
+            starsArray.push(star);
         }
     }
 }
@@ -198,14 +198,14 @@ let counter = 0;
 
 // Game start
 let intervalCharacter;
-let intervalEnemies;
+let intervalBat1;
 let intervalBat2;
 
 function startGame() {
     character.life = 3;
     enemies1 = [];
     enemies2 = [];
-    stars = [];
+    starsArray = [];
     character.positionX = 40;
     character.positionY = 200;
 
@@ -225,18 +225,18 @@ function startGame() {
             enemy2.image = bat2Sprites[counter];
         });
 
-        stars.forEach((star, starIndex) => {
+        starsArray.forEach((star, starIndex) => {
             star.drawing();
             star.front();
 
             if(star.positionX + 30 > 768) {
-                stars.splice(starIndex, 1);
+                starsArray.splice(starIndex, 1);
             }
         });
     }, 1000 / 60);
     
     // Create enemies
-    intervalEnemies = setInterval(() => {
+    intervalBat1 = setInterval(() => {
         if(Math.floor(Math.random() * 2) == 1) {
             const height1 = Math.floor(Math.random() * 200);
 
