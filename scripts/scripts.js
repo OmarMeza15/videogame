@@ -4,6 +4,10 @@ const canvas = document.querySelector("canvas");
 // Define 2D context
 const ctx = canvas.getContext("2d");
 
+// font
+ctx.font = '20px VCR OSD Mono';
+ctx.fillStyle = "grey";
+
 // Load images
     // Main Character 
 const g0 = new Image();
@@ -50,6 +54,10 @@ explosionImg.src = "/img/icons/explosion.png";
     // Potion
 const item = new Image();
 item.src = "/img/icons/collectible.png";
+
+    // Lifes
+const heart = new Image();
+heart.src = "/img/icons/life.png"
 
     // Background
 const img = new Image();
@@ -107,13 +115,25 @@ class cat {
         this.positionY = positionY;
         this.image = image;
         this.ctx = ctx;
+        this.potionsNum = 0;
         this.score = 0;
     }
 
     // Draw
     drawing() {
         this.ctx.drawImage(this.image, this.positionX, this.positionY);
-      }
+
+        // Lifes
+        this.ctx.fillText(`X${this.life}`, 60, 50);
+        this.ctx.drawImage(heart, 20, 25);
+
+        // Potions
+        this.ctx.fillText(`X${this.potionsNum}`, 200, 50);
+        this.ctx.drawImage(item, 160, 16);
+
+        // Score
+        this.ctx.fillText(`Score:${this.score}`, 650, 50);
+    }
 
     // Movements
     front() {
@@ -145,6 +165,19 @@ class cat {
             const star = new shootStars(ctx, character.positionX + 80, character.positionY + 25, s0);
 
             starsArray.push(star);
+        }
+    }
+
+    loseLife() {
+      this.life -= 1;  
+    }
+
+    gainPotion() {
+        this.potionsNum += 1;
+
+        if(this.potionsNum == 5) {
+            this.potionsNum = 0;
+            this.life += 1;
         }
     }
 }
@@ -270,6 +303,8 @@ function startGame() {
                 enemy1.positionY <= character.positionY + 100 &&
                 enemy1.positionX + 100 >= character.positionX) {
                     enemies1.splice(enemyPosition, 1);
+
+                    character.loseLife();
             }
 
             if(enemy1.positionX < -100) {
@@ -287,6 +322,8 @@ function startGame() {
                 enemy2.positionY <= character.positionY + 100 &&
                 enemy2.positionX + 103 >= character.positionX) {
                     enemies2.splice(enemyPosition, 1);
+
+                    character.loseLife();
             }
 
             if(enemy2.positionX < -103) {
@@ -304,6 +341,10 @@ function startGame() {
                 collectible.positionY <= character.positionY + 100 &&
                 collectible.positionX + 36 >= character.positionX) {
                     itemsArray.splice(itemPosition, 1);
+
+                    character.gainPotion();
+
+                    character.score += 50
                 }
 
             if(collectible.positionX < -36) {
@@ -336,6 +377,8 @@ function startGame() {
                         explosionImg);
 
                     explosionArray.push(explode);
+
+                    character.score += 100;
                 }
             });
 
@@ -354,6 +397,8 @@ function startGame() {
                         explosionImg);
 
                     explosionArray.push(explode);
+
+                    character.score += 150;
                 }
             });
         });
