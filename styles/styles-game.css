@@ -40,3 +40,29 @@ h1 {
 canvas {
   background-color: white;
 }
+
+.hide {
+  display: none;
+}
+
+#gameOver {
+  margin-top: 52px;
+  background-image: url("/img/Backgrounds/startmenu.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 110%;
+  height: 468px;
+  width: 768px;
+  position: absolute;
+}
+
+#win {
+  margin-top: 52px;
+  background-image: url("/img/Backgrounds/startmenu.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 110%;
+  height: 468px;
+  width: 768px;
+  position: absolute;
+}
