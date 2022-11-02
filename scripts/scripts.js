@@ -170,6 +170,10 @@ class cat {
 
     loseLife() {
       this.life -= 1;  
+
+      if(this.life == 0) {
+        clearInterval(intervalCharacter);
+      }
     }
 
     gainPotion() {
@@ -345,6 +349,10 @@ function startGame() {
                     character.gainPotion();
 
                     character.score += 50
+
+                    if(character.score >= 2000) {
+                        clearInterval(intervalCharacter);
+                    }
                 }
 
             if(collectible.positionX < -36) {
@@ -379,6 +387,10 @@ function startGame() {
                     explosionArray.push(explode);
 
                     character.score += 100;
+
+                    if(character.score >= 2000) {
+                        clearInterval(intervalCharacter);
+                    }
                 }
             });
 
@@ -399,6 +411,10 @@ function startGame() {
                     explosionArray.push(explode);
 
                     character.score += 150;
+
+                    if(character.score >= 2000) {
+                        clearInterval(intervalCharacter);
+                    }
                 }
             });
         });
