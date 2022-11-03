@@ -5,7 +5,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 // font
-ctx.font = "20px VCR OSD Mono";
+// ctx.font = "20px VCR OSD Mono";
 ctx.fillStyle = "white";
 
 // Game Over and Win
