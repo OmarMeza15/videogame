@@ -14,17 +14,23 @@
         <canvas width="768" height="468" id="canvas"></canvas>
     </div>    
 
-    <div id="gameOver" class="hide"> 
+    <div id="gameOver" class="hide">
         <div class="gameOverContent">
-            <button onclick="startGame()">Try again!</button>
-            <a href="/index.html">home</a>
+            <p>You lost!</p>
+            <div class="menuButtons">
+                <img onclick="startGame()" class="tryAgain" src="/img/Buttons/restart.jpg" alt="restart" >
+                <a href="/index.html"><img src="/img/Buttons/menu.jpg" alt="menu"></a>   
+            </div>
         </div>
     </div>
 
     <div id="win" class="hide">
-        <div class="winContent">
-            <button onclick="startGame()">Play again!</button>
-            <a href="/index.html">home</a>
+        <div class="gameOverContent">
+            <p>You win!</p>
+            <div class="menuButtons">
+                <img onclick="startGame()" class="tryAgain" src="/img/Buttons/restart.jpg" alt="restart" >
+                <a href="/index.html"><img src="/img/Buttons/menu.jpg" alt="menu"></a>   
+            </div>
         </div>
     </div>
 
