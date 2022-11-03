@@ -67,6 +67,7 @@ heart.src = "/img/icons/life.png";
 const img = new Image();
 img.src = "/img/Backgrounds/loopbackground3.jpg";
 
+
 // Sprites
 const catSprites = [g0, g1, g2, g3, g4, g5];
 const bat1Sprites = [e0, e1, e2, e3, e2, e1];
@@ -538,3 +539,7 @@ function updateCanvas() {
   backgroundLoop.draw();
 }
 
+function popUpToggle() {
+  var popUp = document.getElementById("controls");
+  popUp.classList.toggle("show");
+}

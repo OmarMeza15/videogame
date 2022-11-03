@@ -7,16 +7,27 @@
     <title>Macska</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <link href="http://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icons/favicon-16x16.png">
 </head>
 <body>
     <h1>macska</h1>
     <div class="menu-image">
-        <a href="/game.html"><img src="/img/Buttons/start.png" alt="start" class="start-button"></a> 
-        <a href=""><img src="/img/Buttons/controls.png" alt="controls" class="instructions-button"></a>
-        <a href=""><img src="/img/Buttons/credits.png" alt="credits" class="credits-button"></a>
+        <a href="./game.html"><img src="./img/Buttons/start.png" alt="start" class="start-button"></a>
+
+        <div class="popup" onclick="popUpToggle()">
+            <img src="./img/Buttons/controls.png" alt="controls" class="instructions-button">
+
+            <span class="popuptext" id="controls">
+                <h2>Controls</h2>
+                <img class="arrows" src="./img/icons/arrow_keys.png" alt="">
+            </span>
+        </div> 
+        
+        <a href=""><img src="./img/Buttons/credits.png" alt="credits" class="credits-button"></a>
     </div>
 
+
+    <script src="./scripts/scripts.js"></script>
 </body>
 </html>
