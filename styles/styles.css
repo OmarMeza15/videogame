@@ -4,15 +4,15 @@
     padding: 0;
   }
 
-@font-face {
+/* @font-face {
   font-family: rainyHearts;
   src: url(/font/rainyhearts.ttf);
-}
+} */
 
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url("/img/Backgrounds/mainbg.jpg");
+    background-image: url("./img/Backgrounds/mainbg.jpg");
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
     display: flex;
@@ -33,7 +33,7 @@ h1 {
 .menu-image {
   height: 500px;
   width: 800px;
-  background-image: url("/img/Backgrounds/startmenu.png");
+  background-image: url("./img/Backgrounds/startmenu.png");
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
