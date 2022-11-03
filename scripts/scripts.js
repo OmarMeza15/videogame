@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 
 // font
 ctx.font = "20px VCR OSD Mono";
-ctx.fillStyle = "grey";
+ctx.fillStyle = "white";
 
 // Game Over and Win
 const gameOver = document.getElementById("gameOver");
@@ -105,7 +105,7 @@ class cat {
     this.ctx.drawImage(item, 160, 16);
 
     // Score
-    this.ctx.fillText(`Score:${this.score}`, 650, 50);
+    this.ctx.fillText(`Score:${this.score}`, 630, 50);
   }
 
   // Movements
@@ -277,7 +277,7 @@ class Background {
   }
 }
 
-// Main character
+// Main character and background
 const character = new cat(ctx, 40, 200, g0);
 const backgroundLoop = new Background(ctx, 0, 0, img);
 
@@ -300,6 +300,7 @@ function startGame() {
   starsArray = [];
   character.positionX = 40;
   character.positionY = 200;
+  backgroundLoop.positionX = 0;
   gameOver.classList.add("hide");
   win.classList.add("hide");
 
@@ -499,7 +500,6 @@ function startGame() {
   setInterval(() => {
     spritesAnimation();
   }, 200);
-
 }
 
 startGame();
