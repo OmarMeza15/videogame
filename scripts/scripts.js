@@ -539,7 +539,3 @@ function updateCanvas() {
   backgroundLoop.draw();
 }
 
-function popUpToggle() {
-  var popUp = document.getElementById("controls");
-  popUp.classList.toggle("show");
-}
