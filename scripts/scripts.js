@@ -65,7 +65,7 @@ heart.src = "./img/icons/life.png";
 
 // Background
 const img = new Image();
-img.src = "../img/Backgrounds/loopbackground3.jpg";
+img.src = "./img/Backgrounds/loopbackground3.jpg";
 
 
 // Sprites
