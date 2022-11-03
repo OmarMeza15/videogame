@@ -37,10 +37,6 @@ h1 {
   align-items: center;
 }
 
-canvas {
-  background-color: white;
-}
-
 .hide {
   display: none;
 }
