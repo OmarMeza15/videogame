@@ -72,37 +72,6 @@ const catSprites = [g0, g1, g2, g3, g4, g5];
 const bat1Sprites = [e0, e1, e2, e3, e2, e1];
 const bat2Sprites = [e4, e5, e6, e7, e6, e5];
 
-// Background loop
-// const backgroundImage = {
-//   img: img,
-//   x: 0,
-//   speed: -1,
-
-//   move: function () {
-//     this.x += this.speed;
-//     this.x %= img.width;
-//   },
-
-//   draw: function () {
-//     ctx.drawImage(this.img, this.x, 0);
-//     if (this.speed < 0) {
-//       ctx.drawImage(this.img, this.x + img.width, 0);
-//     } else {
-//       ctx.drawImage(this.img, this.x - this.img.width, 0);
-//     }
-//   },
-// };
-
-// function updateCanvas() {
-//   backgroundImage.move();
-
-//   // ctx.clearRect(0, 0, 768, 468);
-//   backgroundImage.draw();
-
-//   requestAnimationFrame(updateCanvas);
-// }
-// updateCanvas();
-
 // Enemy, stars, explosions and items lists
 let enemies1 = [];
 let enemies2 = [];
@@ -284,8 +253,33 @@ class potion {
   }
 }
 
+class Background {
+  constructor(ctx, positionX, speed, image) {
+    this.positionX = positionX;
+    this.ctx = ctx;
+    this.speed = speed - 1;
+    this.image = image;
+  }
+
+  move() {
+    this.positionX += this.speed;
+    this.positionX %= img.width;
+  }
+
+  draw() {
+    this.ctx.drawImage(this.image, this.positionX, 0);
+
+    if(this.speed < 0) {
+      this.ctx.drawImage(this.image, this.positionX + img.width, 0);
+    } else {
+      this.ctx.drawImage(this.image, this.positionX - this.image.width, 0);
+    }
+  }
+}
+
 // Main character
 const character = new cat(ctx, 40, 200, g0);
+const backgroundLoop = new Background(ctx, 0, 0, img);
 
 // Counter
 let counter = 0;
@@ -312,7 +306,9 @@ function startGame() {
   // Draw character, enemies and items and their interactions
   intervalCharacter = setInterval(() => {
     ctx.clearRect(0, 0, 768, 468);
+    updateCanvas();
     character.drawing();
+
 
     enemies1.forEach((enemy1, enemyPosition) => {
       enemy1.back();
@@ -503,6 +499,7 @@ function startGame() {
   setInterval(() => {
     spritesAnimation();
   }, 200);
+
 }
 
 startGame();
@@ -535,3 +532,9 @@ function spritesAnimation() {
     counter = 0;
   }
 }
+
+function updateCanvas() {
+  backgroundLoop.move();
+  backgroundLoop.draw();
+}
+
