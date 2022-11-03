@@ -20,52 +20,52 @@ const g2 = new Image();
 const g3 = new Image();
 const g4 = new Image();
 const g5 = new Image();
-g0.src = "/img/Characters/Cat/1.png";
-g1.src = "/img/Characters/Cat/2.png";
-g2.src = "/img/Characters/Cat/3.png";
-g3.src = "/img/Characters/Cat/4.png";
-g4.src = "/img/Characters/Cat/5.png";
-g5.src = "/img/Characters/Cat/6.png";
+g0.src = "./img/Characters/Cat/1.png";
+g1.src = "./img/Characters/Cat/2.png";
+g2.src = "./img/Characters/Cat/3.png";
+g3.src = "./img/Characters/Cat/4.png";
+g4.src = "./img/Characters/Cat/5.png";
+g5.src = "./img/Characters/Cat/6.png";
 
 // Enemy 1
 const e0 = new Image();
 const e1 = new Image();
 const e2 = new Image();
 const e3 = new Image();
-e0.src = "/img/Characters/Bat1/1.png";
-e1.src = "/img/Characters/Bat1/2.png";
-e2.src = "/img/Characters/Bat1/3.png";
-e3.src = "/img/Characters/Bat1/4.png";
+e0.src = "./img/Characters/Bat1/1.png";
+e1.src = "./img/Characters/Bat1/2.png";
+e2.src = "./img/Characters/Bat1/3.png";
+e3.src = "./img/Characters/Bat1/4.png";
 
 // Enemy 2
 const e4 = new Image();
 const e5 = new Image();
 const e6 = new Image();
 const e7 = new Image();
-e4.src = "/img/Characters/Bat2/1.png";
-e5.src = "/img/Characters/Bat2/2.png";
-e6.src = "/img/Characters/Bat2/3.png";
-e7.src = "/img/Characters/Bat2/4.png";
+e4.src = "./img/Characters/Bat2/1.png";
+e5.src = "./img/Characters/Bat2/2.png";
+e6.src = "./img/Characters/Bat2/3.png";
+e7.src = "./img/Characters/Bat2/4.png";
 
 // Shooting star
 const s0 = new Image();
-s0.src = "/img/icons/shooting.png";
+s0.src = "./img/icons/shooting.png";
 
 // explosion
 const explosionImg = new Image();
-explosionImg.src = "/img/icons/explosion.png";
+explosionImg.src = "./img/icons/explosion.png";
 
 // Potion
 const item = new Image();
-item.src = "/img/icons/collectible.png";
+item.src = "./img/icons/collectible.png";
 
 // Lifes
 const heart = new Image();
-heart.src = "/img/icons/life.png";
+heart.src = "./img/icons/life.png";
 
 // Background
 const img = new Image();
-img.src = "/img/Backgrounds/loopbackground3.jpg";
+img.src = "../img/Backgrounds/loopbackground3.jpg";
 
 
 // Sprites
