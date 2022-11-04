@@ -110,7 +110,7 @@ class cat {
     this.ctx.drawImage(item, 160, 16);
 
     // Score
-    this.ctx.fillText(`Score:${this.score}`, 630, 50);
+    this.ctx.fillText(`Score:${this.score}`, 620, 50);
   }
 
   // Movements
