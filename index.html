@@ -14,23 +14,59 @@
     <div class="menu-image">
         <a href="./game.html"><img src="./img/Buttons/start.png" alt="start" class="start-button"></a>
 
-        <div class="popup" onclick="popUpToggle()">
+        <div class="popup" onclick="toggleControls()">
             <img src="./img/Buttons/controls.png" alt="controls" class="instructions-button">
 
             <span class="popuptext" id="controls">
                 <h2>Controls</h2>
-                <img class="arrows" src="./img/icons/arrow_keys.png" alt="">
+                <img class="arrows" src="./img/icons/arrow_keys.png" alt="arrow keys">
+                <p>To move please use</p>
+                <p>the arrow keys</p>
+                <img class="space" src="./img/icons/space-bar-key.png" alt="space bar">
+                <p>By using space you can</p>
+                <p>shoot at the enemies!</p>
             </span>
         </div> 
-        
-        <a href=""><img src="./img/Buttons/credits.png" alt="credits" class="credits-button"></a>
+
+        <div class="popup" onclick="toggleCredits()">
+            <img src="./img/Buttons/credits.png" alt="credits" class="credits-button">
+
+            <span class="popuptext credits" id="credits">
+                <h2>Credits</h2>
+
+                <h3>Developer</h3>
+                <p>Omar Meza</p>
+                <div class="socialMedia">
+                    <a href="https://github.com/OmarMeza15" target="_blank"><img class="reference" src="./img/icons/Github.png" alt="Github"></a>
+                    <a href="https://www.linkedin.com/in/omarmezajarquin" target="_blank"><img class="reference" src="./img/icons/linkedin.png" alt="linkedin"></a>
+                </div>
+            
+                <h3>Designer</h3>
+                <p>Réka Kovács</p>
+                <div class="socialMedia">
+                    <a href="https://www.trashpandacomic.com/" target="_blank"><img class="reference" src="./img/icons/logo.png" alt="trashpanda webpage"></a>
+                    <a href="https://www.instagram.com/trashpandacomic/" target="_blank"><img class="reference" src="./img/icons/instagram.png" alt="instagram"></a>   
+                </div>
+                
+                <h3>Special thanks to</h3>
+                <p>Harland Lohora</p>
+                <p>Yanet Padilla</p>
+            </span>
+        </div>
     </div>
 
 
     <script>
-        function popUpToggle() {
-            var popUp = document.getElementById("controls");
-            popUp.classList.toggle("show");
+        function toggleControls() {
+            var popUpControls = document.getElementById("controls");
+            
+            popUpControls.classList.toggle("show");
+            
+        }
+
+        function toggleCredits() {
+            var popUpCredits = document.getElementById("credits");
+            popUpCredits.classList.toggle("show");
         }
     </script>
 </body>
